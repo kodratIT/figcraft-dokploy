@@ -20,6 +20,12 @@ FROM nginx:alpine
 
 ARG FIGCRAFT_VERSION=0.16.0
 
+RUN apk add --no-cache apache2-utils
+
 COPY --from=download /tmp/site/figcraft-web-${FIGCRAFT_VERSION}/ /usr/share/nginx/html/
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY setup-auth.sh /docker-entrypoint.d/40-setup-auth.sh
+
+RUN chmod +x /docker-entrypoint.d/40-setup-auth.sh
 
 EXPOSE 80
