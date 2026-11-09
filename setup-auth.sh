@@ -7,7 +7,7 @@ if [ -z "${FIGCRAFT_AUTH_USER:-}" ] || [ -z "${FIGCRAFT_AUTH_PASSWORD:-}" ]; the
 fi
 
 case "$FIGCRAFT_AUTH_USER" in
-    *[!a-zA-Z0-9_.-]*) echo 'FIGCRAFT_AUTH_USER may only contain letters, numbers, _, . and -' >&2; exit 1 ;;
+    *[!a-zA-Z0-9_.@+-]*) echo 'FIGCRAFT_AUTH_USER may only contain letters, numbers, _, ., @, + and -' >&2; exit 1 ;;
 esac
 
 umask 077
